@@ -1,0 +1,48 @@
+package classes;
+
+public class Computador {
+
+    private String marca;
+    private float preco;
+    private HardwareBasico[] hardwares;
+    private SistemaOperacional so;
+    private MemoriaUSB memoriaUSB;
+
+    public Computador(String marca, float preco, HardwareBasico[] hardwares, SistemaOperacional so) {
+        this.marca = marca;
+        this.preco = preco;
+        this.hardwares = hardwares;
+        this.so = so;
+    }
+
+    public void addMemoriaUSB(MemoriaUSB memoriaUSB) {
+        this.memoriaUSB = memoriaUSB;
+    }
+
+    public float getPreco() {
+        return preco;
+    }
+
+    public void mostraPCConfigs() {
+        System.out.println("----- Computador " + marca + " -----");
+        System.out.println("Preço: R$" + preco);
+
+        if (hardwares != null) {
+            for (int i = 0; i < hardwares.length; i++) {
+                if (hardwares[i] != null) {
+                    System.out.println(hardwares[i].getNome() + ": " + hardwares[i].getCapacidade());
+                }
+            }
+        }
+
+        if (so != null) {
+            System.out.println("Sistema Operacional: " + so.getNome() + " (" + so.getTipo() + " bits)");
+        }
+
+        if (memoriaUSB != null) {
+            System.out.println("Acompanha: " + memoriaUSB.getNome() + " de " + memoriaUSB.getCapacidade() + "Gb");
+        }
+
+        System.out.println("---------------------------------");
+    }
+}

@@ -1,0 +1,107 @@
+package main;
+
+import classes.Cliente;
+import classes.Computador;
+import classes.HardwareBasico;
+import classes.MemoriaUSB;
+import classes.ProcessarPedido;
+import classes.SistemaOperacional;
+import java.util.Scanner;
+
+public class Main {
+
+    static final int MATRICULA = 186; // Altere para a sua matrícula real
+
+    public static void main(String[] args) {
+        Scanner leitor = new Scanner(System.in);
+
+        System.out.println("=== Bem-vindo à PC Mania ===");
+
+        System.out.print("Digite o nome do cliente: ");
+        String nome = leitor.nextLine();
+
+        System.out.print("Digite o CPF do cliente: ");
+        String cpf = leitor.nextLine();
+
+        Cliente cliente = new Cliente(nome, cpf);
+
+        int codigo = -1;
+
+        while (codigo != 0) {
+            System.out.println();
+            System.out.println("Escolha uma promoção (ou 0 para finalizar a compra):");
+            System.out.println("1 - Promoção 1 (Apple)");
+            System.out.println("2 - Promoção 2 (Samsung)");
+            System.out.println("3 - Promoção 3 (Dell)");
+            System.out.print("Código: ");
+            codigo = leitor.nextInt();
+
+            if (codigo == 1) {
+                HardwareBasico[] hardwares = new HardwareBasico[3];
+                hardwares[0] = new HardwareBasico("Processador Core i5", 2200);
+                hardwares[1] = new HardwareBasico("Memória RAM", 8);
+                hardwares[2] = new HardwareBasico("HD", 500);
+
+                SistemaOperacional so = new SistemaOperacional("macOS Sequoia", 64);
+
+                Computador pc = new Computador("Apple", MATRICULA, hardwares, so);
+                pc.addMemoriaUSB(new MemoriaUSB("Pen-drive", 16));
+
+                cliente.adicionaComputador(pc);
+                System.out.println("Computador adicionado ao pedido!");
+
+            } else if (codigo == 2) {
+                HardwareBasico[] hardwares = new HardwareBasico[3];
+                hardwares[0] = new HardwareBasico("Processador Core i7", 3370);
+                hardwares[1] = new HardwareBasico("Memória RAM", 16);
+                hardwares[2] = new HardwareBasico("HD", 1000);
+
+                SistemaOperacional so = new SistemaOperacional("Windows 8", 64);
+
+                Computador pc = new Computador("Samsung", MATRICULA + 1, hardwares, so);
+                pc.addMemoriaUSB(new MemoriaUSB("Pen-drive", 32));
+
+                cliente.adicionaComputador(pc);
+                System.out.println("Computador adicionado ao pedido!");
+
+            } else if (codigo == 3) {
+                HardwareBasico[] hardwares = new HardwareBasico[3];
+                hardwares[0] = new HardwareBasico("Processador Core i7", 4500);
+                hardwares[1] = new HardwareBasico("Memória RAM", 32);
+                hardwares[2] = new HardwareBasico("HD", 2000);
+
+                SistemaOperacional so = new SistemaOperacional("Windows 10", 64);
+
+                Computador pc = new Computador("Dell", MATRICULA + 2, hardwares, so);
+                pc.addMemoriaUSB(new MemoriaUSB("HD Externo", 1000));
+
+                cliente.adicionaComputador(pc);
+                System.out.println("Computador adicionado ao pedido!");
+
+            } else if (codigo != 0) {
+                System.out.println("Código inválido! Digite 1, 2, 3 ou 0.");
+            }
+        }
+
+        leitor.close();
+
+        ProcessarPedido.enviarPedido(cliente.getComputadoresComprados());
+
+        System.out.println();
+        System.out.println("=== Dados do Cliente ===");
+        System.out.println("Nome: " + cliente.getNome());
+        System.out.println("CPF: " + cliente.getCpf());
+
+        System.out.println();
+        System.out.println("=== Computadores Comprados ===");
+        Computador[] comprados = cliente.getComputadoresComprados();
+        for (int i = 0; i < cliente.getQuantidadeComprada(); i++) {
+            if (comprados[i] != null) {
+                comprados[i].mostraPCConfigs();
+            }
+        }
+
+        System.out.println();
+        System.out.println("Total da compra: R$" + cliente.calculaTotalCompra());
+    }
+}

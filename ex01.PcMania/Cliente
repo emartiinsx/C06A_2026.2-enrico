@@ -1,0 +1,51 @@
+package classes;
+
+public class Cliente {
+
+    private String nome;
+    private String cpf;
+    private Computador[] computadoresComprados;
+    private int quantidadeComprada;
+
+    public Cliente(String nome, String cpf) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.computadoresComprados = new Computador[10];
+        this.quantidadeComprada = 0;
+    }
+
+    public void adicionaComputador(Computador computador) {
+        if (quantidadeComprada < computadoresComprados.length) {
+            computadoresComprados[quantidadeComprada] = computador;
+            quantidadeComprada++;
+        }
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public Computador[] getComputadoresComprados() {
+        return computadoresComprados;
+    }
+
+    public int getQuantidadeComprada() {
+        return quantidadeComprada;
+    }
+
+    public float calculaTotalCompra() {
+        float total = 0;
+
+        for (int i = 0; i < quantidadeComprada; i++) {
+            if (computadoresComprados[i] != null) {
+                total += computadoresComprados[i].getPreco();
+            }
+        }
+
+        return total;
+    }
+}

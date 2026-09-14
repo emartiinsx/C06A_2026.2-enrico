@@ -1,0 +1,8 @@
+package classes;
+
+public class ProcessarPedido {
+
+    public static void enviarPedido(Computador[] computadoresDoCliente) {
+        System.out.println("Pedido enviado...");
+    }
+}
