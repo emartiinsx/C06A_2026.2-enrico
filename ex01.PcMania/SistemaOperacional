@@ -1,4 +1,4 @@
-package classes;
+package br.inatel.cdg.pcmania;
 
 public class SistemaOperacional {
 

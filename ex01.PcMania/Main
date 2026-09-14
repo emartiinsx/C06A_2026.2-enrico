@@ -1,11 +1,11 @@
 package main;
 
-import classes.Cliente;
-import classes.Computador;
-import classes.HardwareBasico;
-import classes.MemoriaUSB;
-import classes.ProcessarPedido;
-import classes.SistemaOperacional;
+import br.inatel.cdg.pcmania.Cliente;
+import br.inatel.cdg.pcmania.Computador;
+import br.inatel.cdg.pcmania.HardwareBasico;
+import br.inatel.cdg.pcmania.MemoriaUSB;
+import br.inatel.cdg.pcmania.ProcessarPedido;
+import br.inatel.cdg.pcmania.SistemaOperacional;
 import java.util.Scanner;
 
 public class Main {
